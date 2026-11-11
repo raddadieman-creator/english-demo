@@ -1,0 +1,55 @@
+// الاختبارات: لكل سؤال نوع — mcq / tf / type / listen
+export const QUIZZES = [
+  {
+    id: 'q4', u: 'u4', title: 'Unit 4 Quiz', ar: 'اختبار الوحدة الرابعة', minutes: 10,
+    items: [
+      { t: 'mcq', q: 'How often ___ you hang out with friends?', opts: ['do', 'does', 'are', 'is'], a: 'do' },
+      { t: 'mcq', q: 'She ___ goes to the rink. (80%)', opts: ['usually', 'never', 'seldom', 'always'], a: 'usually' },
+      { t: 'mcq', q: 'I enjoy ___ comics.', opts: ['reading', 'to read', 'read', 'reads'], a: 'reading' },
+      { t: 'mcq', q: 'Do you know how ___ ice-skate?', opts: ['to', 'for', '-ing', 'at'], a: 'to' },
+      { t: 'mcq', q: 'Choose the correct sentence.', opts: ['He is always late.', 'He always is late.', 'Always he is late.', 'He is late always is.'], a: 'He is always late.' },
+      { t: 'mcq', q: 'She wants ___ how to cook.', opts: ['to learn', 'learning', 'learn', 'learns'], a: 'to learn' },
+      { t: 'tf', q: '“Seldom” means almost never.', a: 'True' },
+      { t: 'tf', q: '“Twice a week” means three times a week.', a: 'False' },
+      { t: 'type', q: 'Complete: Painting ___ my favorite pastime. (be)', a: ['is'] },
+      { t: 'type', q: 'Write the -ing form of “swim”.', a: ['swimming'] },
+      { t: 'listen', say: 'I work out three times a week.', q: 'How often does she work out?', opts: ['three times a week', 'twice a week', 'every day'], a: 'three times a week' },
+      { t: 'listen', say: 'My favorite pastime is playing board games.', q: 'What is her favorite pastime?', opts: ['board games', 'video games', 'reading'], a: 'board games' },
+    ],
+  },
+  {
+    id: 'q5', u: 'u5', title: 'Unit 5 Quiz', ar: 'اختبار الوحدة الخامسة', minutes: 10,
+    items: [
+      { t: 'mcq', q: 'Is there ___ ice cream?', opts: ['any', 'some', 'a', 'many'], a: 'any' },
+      { t: 'mcq', q: 'Would you like ___ tea?', opts: ['some', 'any', 'a', 'many'], a: 'some' },
+      { t: 'mcq', q: 'Which noun is noncount?', opts: ['rice', 'egg', 'apple', 'sandwich'], a: 'rice' },
+      { t: 'mcq', q: 'a ___ of bread', opts: ['loaf', 'glass', 'bowl', 'bottle'], a: 'loaf' },
+      { t: 'mcq', q: 'The coffee is ___ hot to drink.', opts: ['too', 'enough', 'many', 'any'], a: 'too' },
+      { t: 'mcq', q: 'There are too ___ onions in the salad.', opts: ['many', 'much', 'enough', 'any'], a: 'many' },
+      { t: 'tf', q: 'We say “a bowl of soup”.', a: 'True' },
+      { t: 'tf', q: 'We say “two breads”.', a: 'False' },
+      { t: 'type', q: 'Complete: Is the bag big ___? (كافٍ)', a: ['enough'] },
+      { t: 'type', q: 'Plural of “sandwich”:', a: ['sandwiches'] },
+      { t: 'listen', say: 'There isn’t any milk, but there is some juice.', q: 'What is there?', opts: ['juice', 'milk', 'nothing'], a: 'juice' },
+      { t: 'listen', say: 'I’d like a slice of pizza, please.', q: 'What does she want?', opts: ['a slice of pizza', 'a piece of cake', 'a bowl of soup'], a: 'a slice of pizza' },
+    ],
+  },
+  {
+    id: 'qx', u: 'all', title: 'Final Challenge', ar: 'التحدي الختامي', minutes: 8, challenge: true,
+    items: [
+      { t: 'mcq', q: 'How often do you eat out? — ___ a month.', opts: ['Once', 'One', 'First', 'Ones'], a: 'Once' },
+      { t: 'mcq', q: 'I hate ___ up early on weekends.', opts: ['getting', 'get', 'gets', 'got'], a: 'getting' },
+      { t: 'mcq', q: 'There isn’t ___ sugar for the cake.', opts: ['enough', 'too', 'many', 'some'], a: 'enough' },
+      { t: 'mcq', q: 'Can I have a ___ of water, please?', opts: ['bottle', 'loaf', 'slice', 'piece'], a: 'bottle' },
+      { t: 'mcq', q: 'Teens ___ read about current events online.', opts: ['often', 'are often', 'often are', 'is often'], a: 'often' },
+      { t: 'mcq', q: 'Which plural ends with /ɪz/?', opts: ['oranges', 'cakes', 'eggs', 'apples'], a: 'oranges' },
+      { t: 'tf', q: '“Know how to” is followed by the -ing form.', a: 'False' },
+      { t: 'tf', q: '“Some” is used in offers: Would you like some cake?', a: 'True' },
+      { t: 'type', q: 'Complete: She doesn’t know how ___ swim.', a: ['to'] },
+      { t: 'type', q: 'Complete: Are there ___ eggs? (questions)', a: ['any'] },
+      { t: 'listen', say: 'Fry the eggs, then mix them with the cheese.', q: 'What do you do first?', opts: ['fry the eggs', 'mix the cheese', 'boil the water'], a: 'fry the eggs' },
+      { t: 'listen', say: 'She never plays video games, but she sometimes plays board games.', q: 'What does she sometimes play?', opts: ['board games', 'video games', 'basketball'], a: 'board games' },
+    ],
+  },
+]
+export const quizById = (id) => QUIZZES.find((q) => q.id === id)
