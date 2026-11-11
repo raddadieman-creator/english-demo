@@ -3,10 +3,10 @@ import { me, eventsOf } from '../lib/store.js'
 import { Icon, Ltr } from '../components/ui.jsx'
 
 const S = [
-  { k: 'listening', en: 'Listening', ar: 'الاستماع', ic: 'headphones', c: 'sky', kinds: ['listen', 'dict', 'dialog'], items: ['Listen & Choose: استمعي واختاري', 'Dictation: اكتبي ما تسمعين', 'Dialogues: حوار في النادي وفي المقهى'] },
-  { k: 'speaking', en: 'Speaking', ar: 'المحادثة', ic: 'mic', c: 'pink', kinds: ['speak'], items: ['Read Aloud: يقيس الموقع نطقك', 'Tongue Twisters: تحدّي اللسان', 'Talk Time: سجّلي إجابتك واستمعي لها'] },
-  { k: 'reading', en: 'Reading', ar: 'القراءة', ic: 'book', c: 'mint', kinds: ['read'], items: ['4 نصوص بمستويين', 'اضغطي الكلمة لترين معناها', 'أسئلة فهم بعد كل نص'] },
-  { k: 'writing', en: 'Writing', ar: 'الكتابة', ic: 'pen', c: 'sun', kinds: ['build', 'write'], items: ['Sentence Builder: رتّبي الكلمات', 'فقرة عن هوايتك', 'وصفة عائلتك، وتقيّمها معلمتك'] },
+  { k: 'listening', en: 'Listening', ar: 'الاستماع', ic: 'headphones', c: 'sky', kinds: ['listen', 'dict', 'dialog'], items: ['Listen & Choose: استمع واختر', 'Dictation: اكتب ما تسمع', 'Dialogues: حوار في النادي وفي المقهى'] },
+  { k: 'speaking', en: 'Speaking', ar: 'المحادثة', ic: 'mic', c: 'pink', kinds: ['speak'], items: ['Read Aloud: يقيس الموقع نطقك', 'Tongue Twisters: تحدّي اللسان', 'Talk Time: سجّل إجابتك واستمع لها'] },
+  { k: 'reading', en: 'Reading', ar: 'القراءة', ic: 'book', c: 'mint', kinds: ['read'], items: ['4 نصوص بمستويين', 'اضغط الكلمة لترى معناها', 'أسئلة فهم بعد كل نص'] },
+  { k: 'writing', en: 'Writing', ar: 'الكتابة', ic: 'pen', c: 'sun', kinds: ['build', 'write'], items: ['Sentence Builder: رتّب الكلمات', 'فقرة عن هوايتك', 'وصفة عائلتك، ويقيّمها معلمك'] },
 ]
 
 export default function Skills() {
@@ -18,7 +18,7 @@ export default function Skills() {
       <section className="lab-hero">
         <div className="wrap">
           <Ltr as="h1">Skills Lab</Ltr>
-          <p>أربع مهارات، لكل منها مختبر. ابدئي بأي واحدة، وكل تمرين يضيف إلى نجومك.</p>
+          <p>أربع مهارات، لكل منها مختبر. ابدأ بأي واحدة، وكل تمرين يضيف إلى نجومك.</p>
         </div>
       </section>
       <section className="sec">
@@ -33,7 +33,7 @@ export default function Skills() {
                   <Ltr as="h2">{s.en}</Ltr><span className="lab-ar">{s.ar}</span>
                   <ul>{s.items.map((t) => <li key={t}>{t}</li>)}</ul>
                 </div>
-                <span className="lab-foot">{n ? `أنجزتِ ${n} تمرينًا` : 'ابدئي هنا'}<Icon n="arrow" /></span>
+                <span className="lab-foot">{n ? `أنجزت ${n} تمرينًا` : 'ابدأ هنا'}<Icon n="arrow" /></span>
               </a>
             )
           })}

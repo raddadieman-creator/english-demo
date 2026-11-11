@@ -18,7 +18,7 @@ export const UNITS = [
       'أستخدم المصدر (‑ing) و to بعد الأفعال',
     ],
     vocab: [
-      { en: 'hang out with friends', ar: 'أقضي الوقت مع الصديقات', e: '👭', ex: 'I hang out with my friends on weekends.' },
+      { en: 'hang out with friends', ar: 'أقضي الوقت مع الأصدقاء', e: '👭', ex: 'I hang out with my friends on weekends.' },
       { en: 'work out', ar: 'أتمرّن رياضيًا', e: '🏋️', ex: 'She works out three times a week.' },
       { en: 'play board games', ar: 'ألعب ألعاب الطاولة', e: '🎲', ex: 'We play board games with our family.' },
       { en: 'play video games', ar: 'ألعب ألعاب الفيديو', e: '🎮', ex: 'He seldom plays video games.' },
@@ -143,7 +143,7 @@ export const UNITS = [
       {
         type: 'project', title: 'Unusual Hobby Hunt', ar: 'مشروع: هواية غير مألوفة',
         text: 'Research an unusual hobby. Make a poster: What is it? What do you need? How often do people do it? Present it to the class, and the class votes for the most unusual hobby.',
-        tAr: 'ابحثي عن هواية غير مألوفة وصمّمي ملصقًا يجيب: ما هي؟ ماذا تحتاج؟ وكم مرة يمارسها الناس؟ ثم اعرضيها على الفصل وتصوّت الطالبات لأغرب هواية. (مشروع الوحدة في الكتاب)',
+        tAr: 'ابحث عن هواية غير مألوفة وصمّم ملصقًا يجيب: ما هي؟ ماذا تحتاج؟ وكم مرة يمارسها الناس؟ ثم اعرضها على الفصل ويصوّت الطلاب لأغرب هواية. (مشروع الوحدة في الكتاب)',
       },
     ],
   },
@@ -273,7 +273,7 @@ export const UNITS = [
       {
         type: 'project', title: 'My Family Recipe Card', ar: 'مشروع: بطاقة وصفة عائلتي',
         text: 'Write a recipe for your favorite family dish. List the ingredients with quantities (a cup of rice, two onions…), then write the steps with cooking verbs: chop, boil, fry, mix, bake.',
-        tAr: 'اكتبي وصفة طبقك العائلي المفضل: المكونات بكمياتها، ثم الخطوات بأفعال الطبخ. (مهمة الكتابة في الكتاب: وصفة)',
+        tAr: 'اكتب وصفة طبقك العائلي المفضل: المكونات بكمياتها، ثم الخطوات بأفعال الطبخ. (مهمة الكتابة في الكتاب: وصفة)',
       },
     ],
   },

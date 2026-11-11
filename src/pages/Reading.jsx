@@ -32,7 +32,7 @@ function Reader({ r, onEnter }) {
       </div></section>
       <section className="sec"><div className="wrap reader">
         <article className="paper" onClick={(e) => { if (!e.target.classList.contains('gw')) setTip(null) }}>
-          <div className="paper-top"><SpeakBtn text={r.text.join(' ')} label="استمعي للنص" /><span className="muted small">اضغطي أي كلمة ملوّنة لترين معناها</span></div>
+          <div className="paper-top"><SpeakBtn text={r.text.join(' ')} label="استمع للنص" /><span className="muted small">اضغط أي كلمة ملوّنة لترى معناها</span></div>
           <div dir="ltr" lang="en" className="paper-body">
             {r.text.map((p, i) => <p key={i}><Glossed text={p} gloss={r.gloss} onWord={(k, el) => { const rc = el.getBoundingClientRect(), pr = el.closest('.paper').getBoundingClientRect(); setTip({ k, x: rc.left - pr.left + rc.width / 2, y: rc.bottom - pr.top + 8 }) }} /></p>)}
           </div>
@@ -43,7 +43,7 @@ function Reader({ r, onEnter }) {
           {b && <span className="best-tag" dir="ltr">Best: {b.score}/{b.max}</span>}
           {r.qs.map((q, k) => <div key={k} className="try-q"><Ltr as="p">{k + 1}. {q.q}</Ltr><Choices opts={q.opts} answer={q.a} onDone={(c) => setAns((a) => { const n = { ...a, [k]: c }; if (Object.keys(n).length === r.qs.length) { if (m) addEvent('read', r.id, Object.values(n).filter(Boolean).length, r.qs.length); burstAt(ref.current) } return n })} /></div>)}
           {done && <p className="try-res">{score} / {r.qs.length} {score === r.qs.length ? 'Perfect! 🎉' : ''}</p>}
-          {!m && <button className="btn ghost" onClick={onEnter}>ادخلي لتُحفظ نتيجتك</button>}
+          {!m && <button className="btn ghost" onClick={onEnter}>ادخل لتُحفظ نتيجتك</button>}
         </aside>
       </div></section>
     </>
@@ -68,7 +68,7 @@ export default function Reading({ id, onEnter }) {
               <Ltr as="h3">{x.title}</Ltr>
               <span className="book-ar">{x.ar}</span>
               <span className="book-meta">{x.qs.length} أسئلة · {Object.keys(x.gloss).length} كلمات بمعانيها</span>
-              <span className="book-go">{b ? <span dir="ltr">✓ {b.score}/{b.max}</span> : 'اقرئي'}<Icon n="arrow" /></span>
+              <span className="book-go">{b ? <span dir="ltr">✓ {b.score}/{b.max}</span> : 'اقرأ'}<Icon n="arrow" /></span>
             </a>
           )
         })}

@@ -38,7 +38,7 @@ export function SpeakBtn({ text, slow = false, label, small, className = '' }) {
   useEffect(() => () => stopSpeak(), [])
   const go = async (e) => { e.stopPropagation(); setOn(true); await speak(text, slow); setOn(false) }
   return (
-    <button type="button" className={`spk ${small ? 'sm' : ''} ${on ? 'on' : ''} ${className}`} onClick={go} aria-label={label || ('Listen: ' + text)} title={slow ? 'ببطء' : 'استمعي'}>
+    <button type="button" className={`spk ${small ? 'sm' : ''} ${on ? 'on' : ''} ${className}`} onClick={go} aria-label={label || ('Listen: ' + text)} title={slow ? 'ببطء' : 'استمع'}>
       <Icon n={slow ? 'turtle' : 'speaker'} size={small ? 16 : 20} />{label && <span>{label}</span>}
     </button>
   )
@@ -73,12 +73,12 @@ export const burstAt = (el) => { if (!el) return; const r = el.getBoundingClient
 
 export function Score({ score, max, onRetry, children }) {
   const p = Math.round((score / max) * 100)
-  const msg = p >= 90 ? ['Excellent!', 'ممتاز، أداء رائع'] : p >= 70 ? ['Great job!', 'أحسنتِ'] : p >= 50 ? ['Good try!', 'محاولة جيدة، أعيديها لترتفع نجومك'] : ['Keep going!', 'لا بأس، راجعي ثم أعيدي المحاولة']
+  const msg = p >= 90 ? ['Excellent!', 'ممتاز، أداء رائع'] : p >= 70 ? ['Great job!', 'أحسنت'] : p >= 50 ? ['Good try!', 'محاولة جيدة، أعدها لترتفع نجومك'] : ['Keep going!', 'لا بأس، راجع ثم أعد المحاولة']
   return (
     <div className="score-card">
       <div className="score-ring" style={{ '--p': p }}><b dir="ltr">{score}/{max}</b></div>
       <div><h3 dir="ltr">{msg[0]}</h3><p>{msg[1]}</p><p className="muted">+{Math.round((score / max) * 10)} ⭐</p>{children}
-        {onRetry && <button className="btn ghost" onClick={onRetry}><Icon n="refresh" />أعيدي المحاولة</button>}</div>
+        {onRetry && <button className="btn ghost" onClick={onRetry}><Icon n="refresh" />أعد المحاولة</button>}</div>
     </div>
   )
 }

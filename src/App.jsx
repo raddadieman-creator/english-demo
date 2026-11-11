@@ -39,13 +39,13 @@ function Entry({ onClose }) {
   const [name, setName] = useState('')
   const [cls, setCls] = useState(SITE.classes[0])
   const [err, setErr] = useState('')
-  const ok = (e) => { e.preventDefault(); if (name.trim().split(/\s+/).length < 2) return setErr('اكتبي اسمك الأول واسم العائلة'); signIn(name, cls); onClose() }
+  const ok = (e) => { e.preventDefault(); if (name.trim().split(/\s+/).length < 2) return setErr('اكتب اسمك الأول واسم العائلة'); signIn(name, cls); onClose() }
   return (
     <div className="modal" role="dialog" aria-modal="true" aria-labelledby="ent-h" onClick={onClose}>
       <form className="modal-card entry" onSubmit={ok} onClick={(e) => e.stopPropagation()}>
         <span className="sticker s-sun" dir="ltr">Hello! 👋</span>
-        <h2 id="ent-h">ادخلي إلى الشارع</h2>
-        <p className="muted">نحفظ نجومك ونتائجك باسمك، وتراها معلمتك.</p>
+        <h2 id="ent-h">ادخل إلى الشارع</h2>
+        <p className="muted">نحفظ نجومك ونتائجك باسمك، ويراها معلمك.</p>
         <label className="field">الاسم<input className="input" value={name} onChange={(e) => setName(e.target.value)} placeholder="مثل: ريم العتيبي" autoFocus /></label>
         <div className="field">الفصل<div className="seg">{SITE.classes.map((c) => <button type="button" key={c} aria-pressed={cls === c} onClick={() => setCls(c)} dir="ltr">{c}</button>)}</div></div>
         {err && <p className="err" role="alert">{err}</p>}
@@ -71,7 +71,7 @@ function Nav({ route, onEnter }) {
         <div className="nav-end">
           {m ? (
             <a className="me-chip" href="#/stars"><span className="av">{m.name[0]}</span><span className="nm">{m.name.split(' ')[0]}</span><span className="st" dir="ltr">⭐ {starsOf(m.key)}</span></a>
-          ) : <button className="btn primary sm" onClick={onEnter}>ادخلي</button>}
+          ) : <button className="btn primary sm" onClick={onEnter}>ادخل</button>}
           <button className="burger" aria-label="القائمة" aria-expanded={open} onClick={() => setOpen(!open)}><span /><span /><span /></button>
         </div>
       </div>
@@ -85,7 +85,7 @@ function Footer() {
       <div className="wrap foot-in">
         <Logo small />
         <p>English 2 · Super Goal 2 · Units 4–5 · الفصل الدراسي الأول</p>
-        <a href="#/teacher" className="t-link"><Icon n="lock" size={16} />لوحة المعلمة</a>
+        <a href="#/teacher" className="t-link"><Icon n="lock" size={16} />لوحة المعلم</a>
       </div>
     </footer>
   )
@@ -97,9 +97,9 @@ export function Gate({ children, onEnter }) {
   return (
     <div className="gate">
       <span className="big-emoji">🔑</span>
-      <h2>سجّلي دخولك أولًا</h2>
+      <h2>سجّل دخولك أولًا</h2>
       <p className="muted">حتى تُحفظ نجومك ونتائجك.</p>
-      <button className="btn primary" onClick={onEnter}>ادخلي الآن</button>
+      <button className="btn primary" onClick={onEnter}>ادخل الآن</button>
     </div>
   )
 }

@@ -64,7 +64,7 @@ export function delLink(id) { const d = load(); d.links = d.links.filter((a) => 
 export function resetAll() { cache = empty(); cache.seeded = true; save(); signOut() }
 export function clearDemo() { const d = load(); const demo = new Set(Object.keys(d.students).filter((k) => d.students[k].demo)); d.events = d.events.filter((e) => !demo.has(e.key)); d.writings = d.writings.filter((w) => !demo.has(w.key)); demo.forEach((k) => delete d.students[k]); save() }
 
-// بيانات تجريبية حتى لا تظهر لوحة المعلمة فارغة عند العرض الأول
+// بيانات تجريبية حتى لا تظهر لوحة المعلم فارغة عند العرض الأول
 function seed(d) {
   d.seeded = true
   const names = [['ريم العتيبي', '2/1'], ['لمى الحربي', '2/1'], ['جود الغامدي', '2/2'], ['سارة القحطاني', '2/2'], ['نورة الشهري', '2/3'], ['دانة الزهراني', '2/3']]
@@ -84,5 +84,5 @@ function seed(d) {
     text: 'My favorite pastime is calligraphy. I need a special pen and good paper. I practice three times a week after school. I usually write in my room, and sometimes my mother helps me. I enjoy writing Arabic letters because it makes me calm and happy. I want to learn more styles next year.' })
   d.writings.push({ id: uid(), key: k2, name: 'جود الغامدي', cls: '2/2', task: 'w2', at: now - 1 * day, feedback: { stars: 4, comment: 'Great steps! Add one more quantity.', at: now - 0.5 * day },
     text: 'Ingredients: two cups of rice, a chicken, two onions, some tomatoes and some spices. Steps: First, chop the onions and fry them. Then, add the chicken and the tomatoes. Next, boil some water and add the rice. Finally, cook it for 30 minutes.' })
-  d.announcements.push({ id: uid(), text: 'Welcome to Lingo Lane! اختبار الوحدة الرابعة متاح الآن، بالتوفيق يا بطلات.', at: now - day })
+  d.announcements.push({ id: uid(), text: 'Welcome to Lingo Lane! اختبار الوحدة الرابعة متاح الآن، بالتوفيق يا أبطال.', at: now - day })
 }

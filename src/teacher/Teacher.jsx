@@ -27,7 +27,7 @@ function Login({ onOk }) {
     <div className="t-login">
       <form className="modal-card" onSubmit={(ev) => { ev.preventDefault(); if (p === SITE.teacherPassword) { try { sessionStorage.setItem('ll-t', '1') } catch {} onOk() } else setE('كلمة المرور غير صحيحة') }}>
         <Logo />
-        <h2>لوحة المعلمة</h2>
+        <h2>لوحة المعلم</h2>
         <label className="field">كلمة المرور<input className="input" type="password" value={p} onChange={(x) => setP(x.target.value)} autoFocus /></label>
         <p className="muted small">النسخة التجريبية: 1234</p>
         {e && <p className="err">{e}</p>}
@@ -49,7 +49,7 @@ function Overview({ d, rs }) {
   return (
     <div className="t-stack">
       <div className="kpis">
-        <div className="kpi c-grape"><b>{rs.length}</b><span>طالبة مسجّلة</span></div>
+        <div className="kpi c-grape"><b>{rs.length}</b><span>طالب مسجّل</span></div>
         <div className="kpi c-mint"><b>{week}</b><span>نشاطًا هذا الأسبوع</span></div>
         <div className="kpi c-coral"><b>{pending}</b><span>كتابة بانتظار تقييمك</span></div>
         <div className="kpi c-sun"><b dir="ltr">{quizAvg('q4') ?? '—'}{quizAvg('q4') !== null && '%'}</b><span>متوسط اختبار الوحدة 4</span></div>
@@ -61,11 +61,11 @@ function Overview({ d, rs }) {
         </section>
         <section className="t-card">
           <h3>الاختبارات</h3>
-          <div className="t-bars">{QUIZZES.map((q) => { const a = quizAvg(q.id); const n = rs.filter((r) => r.q[QUIZZES.indexOf(q)] !== null).length; return <div key={q.id} className="tb c-grape"><Ltr>{q.title}</Ltr><span className="tb-bar"><i style={{ width: (a || 0) + '%' }} /></span><b dir="ltr">{a ?? '—'}{a !== null && '%'}</b><small>{n} طالبة</small></div> })}</div>
+          <div className="t-bars">{QUIZZES.map((q) => { const a = quizAvg(q.id); const n = rs.filter((r) => r.q[QUIZZES.indexOf(q)] !== null).length; return <div key={q.id} className="tb c-grape"><Ltr>{q.title}</Ltr><span className="tb-bar"><i style={{ width: (a || 0) + '%' }} /></span><b dir="ltr">{a ?? '—'}{a !== null && '%'}</b><small>{n} طالب</small></div> })}</div>
         </section>
       </div>
       <section className="t-card">
-        <h3>دروس القواعد: أين تحتاج الطالبات دعمًا؟</h3>
+        <h3>دروس القواعد: أين يحتاج الطلاب دعمًا؟</h3>
         <div className="gram-grid">{gram.map((g) => <div key={g.t} className={`gg ${g.p === null ? '' : g.p < 60 ? 'low' : g.p < 80 ? 'mid' : 'hi'}`}><small dir="ltr">Unit {g.u}</small><Ltr as="b">{g.t}</Ltr><span>{g.p === null ? 'لا محاولات' : `${g.p}% · ${g.n} محاولة`}</span></div>)}</div>
       </section>
     </div>
@@ -82,12 +82,12 @@ function Results({ rs }) {
   const cell = (v) => <td className={v === null ? 'na' : v >= 85 ? 'hi' : v >= 60 ? 'mid' : 'low'} dir="ltr">{v === null ? '—' : v + '%'}</td>
   return (
     <section className="t-card">
-      <div className="t-head"><h3>نتائج الطالبات</h3><button className="btn ghost sm" onClick={csv}><Icon n="download" size={16} />تصدير Excel (CSV)</button></div>
+      <div className="t-head"><h3>نتائج الطلاب</h3><button className="btn ghost sm" onClick={csv}><Icon n="download" size={16} />تصدير Excel (CSV)</button></div>
       <div className="t-table"><table>
-        <thead><tr><th>الطالبة</th><th>الفصل</th>{QUIZZES.map((q) => <th key={q.id} dir="ltr">{q.title}</th>)}{SKILLS.map((s) => <th key={s[0]}>{s[0]}</th>)}<th>النجوم</th><th>آخر نشاط</th></tr></thead>
+        <thead><tr><th>الطالب</th><th>الفصل</th>{QUIZZES.map((q) => <th key={q.id} dir="ltr">{q.title}</th>)}{SKILLS.map((s) => <th key={s[0]}>{s[0]}</th>)}<th>النجوم</th><th>آخر نشاط</th></tr></thead>
         <tbody>{rs.map((r) => <tr key={r.key}><td><b>{r.name}</b>{r.demo && <small className="demo">تجريبي</small>}</td><td dir="ltr">{r.cls}</td>{r.q.map((v, i) => <Fragment key={'q' + i}>{cell(v)}</Fragment>)}{r.sk.map((v, i) => <Fragment key={'s' + i}>{cell(v)}</Fragment>)}<td dir="ltr">⭐ {r.stars}</td><td className="muted">{ago(r.last)}</td></tr>)}</tbody>
       </table></div>
-      {rs.length === 0 && <p className="empty">لا توجد طالبات في هذا الفصل بعد.</p>}
+      {rs.length === 0 && <p className="empty">لا توجد طلاب في هذا الفصل بعد.</p>}
     </section>
   )
 }
@@ -112,7 +112,7 @@ function Writings({ d }) {
         ))}{list.length === 0 && <p className="empty">لا توجد كتابات بعد.</p>}</div>
       </section>
       <section className="t-card">
-        {!w ? <p className="empty">اختاري كتابة لقراءتها وتقييمها.</p> : (
+        {!w ? <p className="empty">اختر كتابة لقراءتها وتقييمها.</p> : (
           <div className="w-view">
             <div className="t-head"><h3>{w.name} <small dir="ltr">{w.cls}</small></h3><span className="muted">{ago(w.at)}</span></div>
             <Ltr as="h4">{task(w.task)?.title}</Ltr>
@@ -123,8 +123,8 @@ function Writings({ d }) {
               <span>التقييم</span>
               <div className="stars-pick" dir="ltr">{[1, 2, 3, 4, 5].map((n) => <button key={n} className={n <= stars ? 'on' : ''} onClick={() => setStars(n)} aria-label={n + ' نجوم'}>★</button>)}</div>
               <textarea className="input" rows={3} value={c} onChange={(e) => setC(e.target.value)} placeholder="Great job! Next time…" dir="auto" />
-              <button className="btn primary" onClick={() => giveFeedback(w.id, stars, c.trim())}>{w.feedback ? 'تحديث التقييم' : 'إرسال التقييم للطالبة'}</button>
-              {w.feedback && <p className="ok-msg">وصل التقييم للطالبة.</p>}
+              <button className="btn primary" onClick={() => giveFeedback(w.id, stars, c.trim())}>{w.feedback ? 'تحديث التقييم' : 'إرسال التقييم للطالب'}</button>
+              {w.feedback && <p className="ok-msg">وصل التقييم للطالب.</p>}
             </div>
           </div>
         )}
@@ -139,10 +139,10 @@ function Speaking({ d }) {
   const list = Object.values(map).map((v) => ({ ...v, avg: Math.round(v.xs.reduce((a, e) => a + e.score, 0) / v.xs.length), last: v.xs.sort((a, b) => b.at - a.at)[0] })).sort((a, b) => b.avg - a.avg)
   return (
     <section className="t-card">
-      <h3>المحادثة: دقة النطق في «اقرئي بصوتك»</h3>
-      <p className="muted small">النسبة = الكلمات التي ميّزها المتصفح صحيحة من كلمات الجملة. مؤشر تدريبي يساعدك على معرفة من تحتاج دعمًا، وليس درجة نهائية.</p>
+      <h3>المحادثة: دقة النطق في «اقرأ بصوتك»</h3>
+      <p className="muted small">النسبة = الكلمات التي ميّزها المتصفح صحيحة من كلمات الجملة. مؤشر تدريبي يساعدك على معرفة من يحتاج دعمًا، وليس درجة نهائية.</p>
       <div className="t-table"><table>
-        <thead><tr><th>الطالبة</th><th>الفصل</th><th>عدد المحاولات</th><th>متوسط الدقة</th><th>آخر ما سُمع</th></tr></thead>
+        <thead><tr><th>الطالب</th><th>الفصل</th><th>عدد المحاولات</th><th>متوسط الدقة</th><th>آخر ما سُمع</th></tr></thead>
         <tbody>{list.map((r) => <tr key={r.name + r.cls}><td><b>{r.name}</b></td><td dir="ltr">{r.cls}</td><td>{r.xs.length}</td><td className={r.avg >= 85 ? 'hi' : r.avg >= 60 ? 'mid' : 'low'} dir="ltr">{r.avg}%</td><td dir="ltr" className="muted">{r.last.detail?.heard || '—'}</td></tr>)}</tbody>
       </table></div>
       {list.length === 0 && <p className="empty">لا توجد محاولات بعد.</p>}
@@ -157,7 +157,7 @@ function Board({ d }) {
   return (
     <div className="t-two">
       <section className="t-card">
-        <h3><Icon n="bell" />إعلان للطالبات</h3>
+        <h3><Icon n="bell" />إعلان للطلاب</h3>
         <p className="muted small">يظهر الإعلان الأحدث أعلى الصفحة الرئيسية.</p>
         <form onSubmit={(e) => { e.preventDefault(); if (t.trim()) { addAnnouncement(t.trim()); setT('') } }} className="t-form">
           <textarea className="input" rows={3} value={t} onChange={(e) => setT(e.target.value)} placeholder="مثل: اختبار الوحدة الخامسة يوم الأحد" />
@@ -168,7 +168,7 @@ function Board({ d }) {
       <section className="t-card">
         <h3><Icon n="link" />روابط للمذاكرة</h3>
         <p className="muted small">فيديو يوتيوب، أو Wordwall، أو Quizizz، أو أي صفحة مفيدة.</p>
-        <form className="t-form" onSubmit={(e) => { e.preventDefault(); let u = lu.trim(); if (u && !/^https?:\/\//.test(u)) u = 'https://' + u; try { new URL(u) } catch { return setErr('اكتبي رابطًا صحيحًا') } if (!lt.trim()) return setErr('اكتبي عنوانًا'); setErr(''); addLink(lt.trim(), u, lun); setLt(''); setLu('') }}>
+        <form className="t-form" onSubmit={(e) => { e.preventDefault(); let u = lu.trim(); if (u && !/^https?:\/\//.test(u)) u = 'https://' + u; try { new URL(u) } catch { return setErr('اكتب رابطًا صحيحًا') } if (!lt.trim()) return setErr('اكتب عنوانًا'); setErr(''); addLink(lt.trim(), u, lun); setLt(''); setLu('') }}>
           <input className="input" value={lt} onChange={(e) => setLt(e.target.value)} placeholder="العنوان" />
           <input className="input" dir="ltr" value={lu} onChange={(e) => setLu(e.target.value)} placeholder="https://" />
           <div className="seg">{['u4', 'u5'].map((u) => <button type="button" key={u} aria-pressed={lun === u} onClick={() => setLun(u)} dir="ltr">Unit {u.slice(1)}</button>)}</div>
@@ -195,7 +195,7 @@ export default function Teacher() {
     <div className="t-app">
       <aside className="t-side">
         <Logo small />
-        <p className="t-role">لوحة المعلمة</p>
+        <p className="t-role">لوحة المعلم</p>
         <nav>{T.map(([k, l, ic, n]) => <button key={k} aria-current={tab === k ? 'page' : undefined} onClick={() => setTab(k)}><Icon n={ic} size={19} />{l}{n ? <em>{n}</em> : null}</button>)}</nav>
         <div className="t-side-foot">
           <a href="#/" className="link-btn"><Icon n="home" size={16} />عرض المنصة</a>
@@ -208,7 +208,7 @@ export default function Teacher() {
           <div className="seg">{['', ...SITE.classes].map((c) => <button key={c || 'all'} aria-pressed={cls === c} onClick={() => setCls(c)} dir="ltr">{c || 'كل الفصول'}</button>)}</div>
         </header>
         {Object.values(d.students).some((s) => s.demo) && (
-          <div className="demo-note"><span>تظهر بيانات ست طالبات تجريبيات حتى تري شكل اللوحة.</span>
+          <div className="demo-note"><span>تظهر بيانات ستة طلاب تجريبيين حتى ترى شكل اللوحة.</span>
             {confirm ? <><button className="btn danger sm" onClick={() => { clearDemo(); setConfirm(false) }}>تأكيد الحذف</button><button className="btn ghost sm" onClick={() => setConfirm(false)}>إلغاء</button></> : <button className="btn ghost sm" onClick={() => setConfirm(true)}>حذف البيانات التجريبية</button>}
           </div>
         )}

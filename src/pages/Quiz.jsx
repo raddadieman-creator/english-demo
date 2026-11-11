@@ -63,7 +63,7 @@ export default function Quiz({ id }) {
               </div>
             ))}
           </div>
-          <div className="row-btns"><button className="btn primary" onClick={() => { setI(0); setAns([]); setLeft(qz.minutes * 60) }}><Icon n="refresh" />أعيدي الاختبار</button><a className="btn ghost" href="#/quizzes">كل الاختبارات</a></div>
+          <div className="row-btns"><button className="btn primary" onClick={() => { setI(0); setAns([]); setLeft(qz.minutes * 60) }}><Icon n="refresh" />أعد الاختبار</button><a className="btn ghost" href="#/quizzes">كل الاختبارات</a></div>
         </div>
       </div></section>
     )
@@ -79,8 +79,8 @@ export default function Quiz({ id }) {
         <span dir="ltr" className={`timer ${left < 60 ? 'low' : ''}`}>⏱ {mm}:{ss}</span>
       </div>
       <div className="qcard">
-        <span className="qtype">{it.t === 'mcq' ? 'اختاري الإجابة' : it.t === 'tf' ? 'صح أم خطأ؟' : it.t === 'type' ? 'اكتبي الإجابة' : 'استمعي ثم اختاري'}</span>
-        {it.t === 'listen' && <div className="q-listen"><SpeakBtn text={it.say} label="أعيدي الاستماع" /><SpeakBtn text={it.say} slow label="ببطء" /></div>}
+        <span className="qtype">{it.t === 'mcq' ? 'اختر الإجابة' : it.t === 'tf' ? 'صح أم خطأ؟' : it.t === 'type' ? 'اكتب الإجابة' : 'استمع ثم اختر'}</span>
+        {it.t === 'listen' && <div className="q-listen"><SpeakBtn text={it.say} label="أعد الاستماع" /><SpeakBtn text={it.say} slow label="ببطء" /></div>}
         <Ltr as="h2">{it.q}</Ltr>
         {(it.t === 'mcq' || it.t === 'listen') && <Choices key={i} opts={it.opts} answer={it.a} shuffle onDone={record} disabled={!!picked} />}
         {it.t === 'tf' && <Choices key={i} opts={['True', 'False']} answer={it.a} onDone={record} />}

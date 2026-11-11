@@ -22,13 +22,13 @@ function Mic({ target, refId, onEnter }) {
       addEvent('speak', refId, r.score, 100, { heard: r.heard })
       if (r.score >= 80) burstAt(ref.current)
     } catch (e) {
-      setSt('err'); setErr(e.message === 'not-allowed' ? 'اسمحي للموقع باستخدام الميكروفون من إعدادات المتصفح.' : e.message === 'no-speech' ? 'لم نسمع صوتًا، اقتربي من الميكروفون وأعيدي.' : 'تعذّر التسجيل، أعيدي المحاولة.')
+      setSt('err'); setErr(e.message === 'not-allowed' ? 'اسمح للموقع باستخدام الميكروفون من إعدادات المتصفح.' : e.message === 'no-speech' ? 'لم نسمع صوتًا، اقترب من الميكروفون وأعد.' : 'تعذّر التسجيل، أعد المحاولة.')
     }
   }
   return (
     <div className="mic-box" ref={ref}>
-      <button className={`mic-btn ${st === 'rec' ? 'rec' : ''}`} onClick={go} disabled={st === 'rec'} aria-label="ابدئي التحدث"><Icon n="mic" size={30} /></button>
-      <span className="mic-lbl">{st === 'rec' ? 'أسمعك الآن… تكلّمي' : 'اضغطي ثم اقرئي الجملة'}</span>
+      <button className={`mic-btn ${st === 'rec' ? 'rec' : ''}`} onClick={go} disabled={st === 'rec'} aria-label="ابدأ التحدث"><Icon n="mic" size={30} /></button>
+      <span className="mic-lbl">{st === 'rec' ? 'أسمعك الآن… تكلّم' : 'اضغط ثم اقرأ الجملة'}</span>
       {b && st !== 'done' && <span className="best-tag" dir="ltr">Best: {b.score}%</span>}
       {st === 'err' && <p className="err">{err}</p>}
       {st === 'done' && res && (
@@ -36,7 +36,7 @@ function Mic({ target, refId, onEnter }) {
           <div className="mic-score" style={{ '--p': res.score }}><b dir="ltr">{res.score}%</b></div>
           <p className="words" dir="ltr">{res.words.map((w, i) => <span key={i} className={w.ok ? 'ok' : 'miss'}>{w.w}</span>)}</p>
           <p className="muted small" dir="ltr">We heard: “{res.heard}”</p>
-          <p className="small">{res.score >= 90 ? 'نطق ممتاز 🎉' : res.score >= 70 ? 'جيد جدًا، الكلمات الحمراء تحتاج تدريبًا' : 'استمعي للجملة ببطء ثم أعيدي'}</p>
+          <p className="small">{res.score >= 90 ? 'نطق ممتاز 🎉' : res.score >= 70 ? 'جيد جدًا، الكلمات الحمراء تحتاج تدريبًا' : 'استمع للجملة ببطء ثم أعد'}</p>
         </div>
       )}
     </div>
@@ -50,12 +50,12 @@ function Recorder() {
   const h = useRef(null)
   const start = async () => {
     setErr('')
-    try { h.current = await record(30000); setSt('rec') } catch { setErr('اسمحي للموقع باستخدام الميكروفون.') }
+    try { h.current = await record(30000); setSt('rec') } catch { setErr('اسمح للموقع باستخدام الميكروفون.') }
   }
   const stop = async () => { const u = await h.current.stop(); setUrl(u); setSt('done') }
   return (
     <div className="recorder">
-      {st !== 'rec' ? <button className="btn primary" onClick={start}><Icon n="mic" />{st === 'done' ? 'سجّلي مرة أخرى' : 'ابدئي التسجيل'}</button> : <button className="btn danger" onClick={stop}><Icon n="stop" />أوقفي (حتى 30 ثانية)</button>}
+      {st !== 'rec' ? <button className="btn primary" onClick={start}><Icon n="mic" />{st === 'done' ? 'سجّل مرة أخرى' : 'ابدأ التسجيل'}</button> : <button className="btn danger" onClick={stop}><Icon n="stop" />أوقف (حتى 30 ثانية)</button>}
       {st === 'rec' && <span className="rec-dot">REC</span>}
       {url && st === 'done' && <audio controls src={url} />}
       {err && <p className="err">{err}</p>}
@@ -71,10 +71,10 @@ export default function Speaking({ onEnter }) {
   const list = SPEAKING.read.map((x, i) => ({ ...x, i })).filter((x) => u === 'all' || x.u === u)
   return (
     <>
-      <LabHead en="Speaking" ar="المحادثة: اقرئي بصوتك ويقيس الموقع نطقك" c="pink" />
+      <LabHead en="Speaking" ar="المحادثة: اقرأ بصوتك ويقيس الموقع نطقك" c="pink" />
       <section className="sec"><div className="wrap narrow">
-        {!stt && <p className="warn">قياس النطق يعمل في متصفح Chrome على الحاسب أو الجوال. في المتصفحات الأخرى استخدمي «Talk Time» للتسجيل والاستماع لصوتك.</p>}
-        <SubTabs tabs={[['read', 'Read Aloud', 'اقرئي بصوتك'], ['tw', 'Tongue Twisters', 'تحدّي اللسان'], ['talk', 'Talk Time', 'تحدّثي']]} val={t} set={setT} />
+        {!stt && <p className="warn">قياس النطق يعمل في متصفح Chrome على الحاسب أو الجوال. في المتصفحات الأخرى استخدم «Talk Time» للتسجيل والاستماع لصوتك.</p>}
+        <SubTabs tabs={[['read', 'Read Aloud', 'اقرأ بصوتك'], ['tw', 'Tongue Twisters', 'تحدّي اللسان'], ['talk', 'Talk Time', 'تحدّث']]} val={t} set={setT} />
         {t === 'read' && (
           <div className="stack">
             <div className="seg center">{[['all', 'الكل'], ['u4', 'Unit 4'], ['u5', 'Unit 5']].map(([k, l]) => <button key={k} aria-pressed={u === k} onClick={() => setU(k)}>{l}</button>)}</div>
@@ -88,7 +88,7 @@ export default function Speaking({ onEnter }) {
         )}
         {t === 'tw' && (
           <div className="stack">
-            <p className="tip">اقرئيها ببطء أولًا ثم أسرع فأسرع. هل تستطيعين قولها ثلاث مرات دون خطأ؟</p>
+            <p className="tip">اقرأها ببطء أولًا ثم أسرع فأسرع. هل تستطيع قولها ثلاث مرات دون خطأ؟</p>
             {SPEAKING.twisters.map((x, i) => (
               <div key={i} className="say-card tw">
                 <div className="say-top"><SpeakBtn text={x} /><SpeakBtn text={x} slow /><Ltr as="b">{x}</Ltr></div>
@@ -99,7 +99,7 @@ export default function Speaking({ onEnter }) {
         )}
         {t === 'talk' && (
           <div className="stack">
-            <p className="tip">اختاري سؤالًا، واستعيني بالجمل المساعدة، ثم سجّلي إجابتك واستمعي لنفسك. حاولي أن تتكلمي 20 ثانية على الأقل.</p>
+            <p className="tip">اختر سؤالًا، واستعن بالجمل المساعدة، ثم سجّل إجابتك واستمع لنفسك. حاول أن تتكلم 20 ثانية على الأقل.</p>
             {SPEAKING.talk.map((x, i) => (
               <div key={i} className="say-card talk">
                 <span className="u-tag" dir="ltr">Unit {x.u.slice(1)}</span>

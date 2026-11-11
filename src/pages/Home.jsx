@@ -13,10 +13,10 @@ export function unitProgress(key, u) {
 }
 
 const SKILLS = [
-  { k: 'listening', en: 'Listening', ar: 'الاستماع', ic: 'headphones', c: 'sky', d: 'استمعي واختاري، واكتبي ما تسمعينه، وتابعي حوارات قصيرة' },
-  { k: 'speaking', en: 'Speaking', ar: 'المحادثة', ic: 'mic', c: 'pink', d: 'اقرئي بصوتك ويقيس الموقع نطقك، وسجّلي إجاباتك' },
-  { k: 'reading', en: 'Reading', ar: 'القراءة', ic: 'book', c: 'mint', d: 'نصوص قصيرة، اضغطي أي كلمة ملوّنة لترين معناها' },
-  { k: 'writing', en: 'Writing', ar: 'الكتابة', ic: 'pen', c: 'sun', d: 'رتّبي الجمل، واكتبي فقرة تصلها معلمتك وتقيّمها' },
+  { k: 'listening', en: 'Listening', ar: 'الاستماع', ic: 'headphones', c: 'sky', d: 'استمع واختاري، واكتب ما تسمعينه، وتابع حوارات قصيرة' },
+  { k: 'speaking', en: 'Speaking', ar: 'المحادثة', ic: 'mic', c: 'pink', d: 'اقرأ بصوتك ويقيس الموقع نطقك، وسجّل إجاباتك' },
+  { k: 'reading', en: 'Reading', ar: 'القراءة', ic: 'book', c: 'mint', d: 'نصوص قصيرة، اضغط أي كلمة ملوّنة لترى معناها' },
+  { k: 'writing', en: 'Writing', ar: 'الكتابة', ic: 'pen', c: 'sun', d: 'رتّب الجمل، واكتب فقرة تصل إلى معلمك ويقيّمها' },
 ]
 
 function WordOfDay() {
@@ -24,11 +24,11 @@ function WordOfDay() {
   const w = all[Math.floor(Date.now() / 864e5) % all.length]
   const [flip, setFlip] = useState(false)
   return (
-    <div className={`wod ${flip ? 'flip' : ''}`} role="button" tabIndex={0} onClick={() => setFlip(!flip)} onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); setFlip(!flip) } }} aria-label="كلمة اليوم: اضغطي لترين المعنى">
+    <div className={`wod ${flip ? 'flip' : ''}`} role="button" tabIndex={0} onClick={() => setFlip(!flip)} onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); setFlip(!flip) } }} aria-label="كلمة اليوم: اضغط لترى المعنى">
       <span className="wod-tag">Word of the day</span>
       <span className="wod-e" aria-hidden="true">{w.e}</span>
       <Ltr as="b" className="wod-w">{w.en}</Ltr>
-      {flip ? <span className="wod-ar">{w.ar}<Ltr as="small">{w.ex}</Ltr></span> : <span className="wod-hint">اضغطي لترين المعنى</span>}
+      {flip ? <span className="wod-ar">{w.ar}<Ltr as="small">{w.ex}</Ltr></span> : <span className="wod-hint">اضغط لترى المعنى</span>}
       <span className="wod-spk"><SpeakBtn text={w.en} small /></span>
     </div>
   )
@@ -49,9 +49,9 @@ export default function Home({ onEnter }) {
           <div className="hero-txt">
             <p className="kicker">English 2 · Super Goal 2</p>
             <h1 dir="ltr" lang="en"><span className="l1">Speak it.</span> <span className="l2">Play it.</span> <span className="l3">Love it.</span></h1>
-            <p className="lead">منصة الإنجليزي لطالبات ثاني متوسط: الوحدتان الرابعة والخامسة، بكلمات تُسمع، وقواعد تُلعب، ومهارات أربع تتدرّبين عليها بصوتك.</p>
+            <p className="lead">منصة الإنجليزي لطلاب ثاني متوسط: الوحدتان الرابعة والخامسة، بكلمات تُسمع، وقواعد تُلعب، ومهارات أربع تتدرّب عليها بصوتك.</p>
             <div className="cta">
-              {m ? <a className="btn primary big" href="#/unit/u4">أكملي رحلتك <Icon n="arrow" /></a> : <button className="btn primary big" onClick={onEnter}>ابدئي الرحلة <Icon n="arrow" /></button>}
+              {m ? <a className="btn primary big" href="#/unit/u4">أكمل رحلتك <Icon n="arrow" /></a> : <button className="btn primary big" onClick={onEnter}>ابدأ الرحلة <Icon n="arrow" /></button>}
               <a className="btn ghost big" href="#/skills">مختبر المهارات</a>
             </div>
             {m && <p className="hello">مرحبًا {m.name.split(' ')[0]}، معك <b dir="ltr">⭐ {starsOf(m.key)}</b> نجمة.</p>}
@@ -69,7 +69,7 @@ export default function Home({ onEnter }) {
 
       <section className="sec">
         <div className="wrap">
-          <div className="sec-h"><h2>اختاري وحدتك</h2><p>كل وحدة فيها: كلمات، وقواعد، وأصوات، وإثراء، واختبار.</p></div>
+          <div className="sec-h"><h2>اختر وحدتك</h2><p>كل وحدة فيها: كلمات، وقواعد، وأصوات، وإثراء، واختبار.</p></div>
           <div className="units">
             {UNITS.map((u) => {
               const p = unitProgress(m?.key, u)
@@ -82,7 +82,7 @@ export default function Home({ onEnter }) {
                   <Ltr as="p" className="p-hook">“{u.hook}”</Ltr>
                   <span className="p-meta"><span>{u.vocab.length} كلمة</span><span>{u.grammar.length} دروس قواعد</span><span>إثراء</span></span>
                   <span className="p-bar"><i style={{ width: p + '%' }} /></span>
-                  <span className="p-go">{p ? `أنجزتِ ${p}%` : 'ابدئي الوحدة'}<Icon n="arrow" /></span>
+                  <span className="p-go">{p ? `أنجزت ${p}%` : 'ابدأ الوحدة'}<Icon n="arrow" /></span>
                 </a>
               )
             })}
@@ -109,7 +109,7 @@ export default function Home({ onEnter }) {
       <section className="sec">
         <div className="wrap two-col">
           <div>
-            <div className="sec-h start"><h2>اختبري نفسك</h2><p>اختبار لكل وحدة، وتحدٍّ ختامي بالوقت.</p></div>
+            <div className="sec-h start"><h2>اختبر نفسك</h2><p>اختبار لكل وحدة، وتحدٍّ ختامي بالوقت.</p></div>
             <div className="qlist">
               {QUIZZES.map((q) => {
                 const b = m && best(m.key, 'quiz', q.id)
@@ -124,7 +124,7 @@ export default function Home({ onEnter }) {
             </div>
           </div>
           <div className="podium-card">
-            <h3><Icon n="trophy" />نجمات الأسبوع</h3>
+            <h3><Icon n="trophy" />نجوم الأسبوع</h3>
             <ol className="podium">
               {top.map((s, i) => <li key={s.key} className={'pd' + (i + 1)}><span className="pd-av">{s.name[0]}</span><b>{s.name}</b><small dir="ltr">{s.cls}</small><span className="pd-st" dir="ltr">⭐ {s.stars}</span></li>)}
             </ol>
@@ -136,7 +136,7 @@ export default function Home({ onEnter }) {
       {d.links.length > 0 && (
         <section className="sec tight">
           <div className="wrap">
-            <div className="sec-h start"><h2>روابط من معلمتك</h2></div>
+            <div className="sec-h start"><h2>روابط من معلمك</h2></div>
             <div className="links-grid">{d.links.map((l) => <a key={l.id} className="lnk" href={l.url} target="_blank" rel="noopener"><Icon n="link" /><span>{l.title}</span></a>)}</div>
           </div>
         </section>

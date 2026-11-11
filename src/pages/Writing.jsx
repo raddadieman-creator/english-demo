@@ -15,7 +15,7 @@ function Builder({ onEnter }) {
   const ref = useRef()
   const it = items[i]
   const pool = useMemo(() => it.words.map((w, k) => ({ w, k })).sort(() => Math.random() - 0.5), [i])
-  if (!me()) return <div className="game-card"><p>سجّلي دخولك لتُحفظ نتيجتك.</p><button className="btn primary" onClick={onEnter}>ادخلي</button></div>
+  if (!me()) return <div className="game-card"><p>سجّل دخولك لتُحفظ نتيجتك.</p><button className="btn primary" onClick={onEnter}>ادخل</button></div>
   if (done) return <Score score={ok} max={items.length} onRetry={() => { setI(0); setOk(0); setPicked([]); setRes(null); setDone(false) }} />
   const sentence = (ws) => ws.join(' ').replace(/ \?/g, '?')
   const check = () => {
@@ -26,13 +26,13 @@ function Builder({ onEnter }) {
   return (
     <div className="game-card" ref={ref}>
       <div className="g-top"><b dir="ltr">Sentence Builder</b><span dir="ltr">{i + 1} / {items.length}</span></div>
-      <p className="g-q">رتّبي الكلمات لتكوّني الجملة: <b>{it.ar}</b></p>
+      <p className="g-q">رتّب الكلمات لتكوّن الجملة: <b>{it.ar}</b></p>
       <div className={`slot ${res === true ? 'ok' : res === false ? 'no' : ''}`} dir="ltr">
         {picked.length ? picked.map((p) => <button key={p.k} className="tile on" disabled={res !== null} onClick={() => setPicked(picked.filter((x) => x.k !== p.k))}>{p.w}</button>) : <span className="slot-ph">Tap the words…</span>}
       </div>
       <div className="tiles" dir="ltr">{pool.map((p) => <button key={p.k} className="tile" disabled={picked.some((x) => x.k === p.k) || res !== null} onClick={() => setPicked([...picked, p])}>{p.w}</button>)}</div>
       {res === false && <p className="fix" dir="ltr">Correct: <b>{sentence(it.words)}</b></p>}
-      {res === null ? <button className="btn primary" disabled={picked.length !== it.words.length} onClick={check}>تحقّقي</button> : <button className="btn primary" onClick={next}>التالي <Icon n="arrow" /></button>}
+      {res === null ? <button className="btn primary" disabled={picked.length !== it.words.length} onClick={check}>تحقّق</button> : <button className="btn primary" onClick={next}>التالي <Icon n="arrow" /></button>}
     </div>
   )
 }
@@ -64,15 +64,15 @@ function Task({ t, onEnter }) {
           {t.checks.map((c) => { const on = c.test(txt); return <li key={c.id} className={on ? 'on' : ''}><span className="ck">{on ? <Icon n="check" size={14} sw={3} /> : null}</span><span><Mixed text={c.ar} /></span></li> })}
         </ul>
       </div>
-      {sent && <p className="ok-msg">وصلت كتابتك لمعلمتك 💌 ستجدين تقييمها هنا.</p>}
-      <button className="btn primary" disabled={words < 15} onClick={send}><Icon n="arrow" />أرسلي لمعلمتك</button>
+      {sent && <p className="ok-msg">وصلت كتابتك لمعلمك 💌 ستجد تقييمه هنا.</p>}
+      <button className="btn primary" disabled={words < 15} onClick={send}><Icon n="arrow" />أرسل لمعلمك</button>
       {mine.length > 0 && (
         <div className="mine">
           <h4>كتاباتي السابقة</h4>
           {mine.map((w) => (
             <div key={w.id} className="mine-row">
               <Ltr as="p">{w.text}</Ltr>
-              {w.feedback ? <div className="fb"><span dir="ltr">{'★'.repeat(w.feedback.stars)}{'☆'.repeat(5 - w.feedback.stars)}</span><p>{w.feedback.comment}</p></div> : <span className="pending">بانتظار تقييم المعلمة</span>}
+              {w.feedback ? <div className="fb"><span dir="ltr">{'★'.repeat(w.feedback.stars)}{'☆'.repeat(5 - w.feedback.stars)}</span><p>{w.feedback.comment}</p></div> : <span className="pending">بانتظار تقييم المعلم</span>}
             </div>
           ))}
         </div>
@@ -86,9 +86,9 @@ export default function Writing({ onEnter }) {
   const [t, setT] = useState('build')
   return (
     <>
-      <LabHead en="Writing" ar="الكتابة: من ترتيب الجملة إلى فقرة كاملة تقيّمها معلمتك" c="sun" />
+      <LabHead en="Writing" ar="الكتابة: من ترتيب الجملة إلى فقرة كاملة يقيّمها معلمك" c="sun" />
       <section className="sec"><div className="wrap narrow">
-        <SubTabs tabs={[['build', 'Sentence Builder', 'رتّبي الجملة'], ['w1', 'My Pastime', 'هوايتي'], ['w2', 'My Recipe', 'وصفتي']]} val={t} set={setT} />
+        <SubTabs tabs={[['build', 'Sentence Builder', 'رتّب الجملة'], ['w1', 'My Pastime', 'هوايتي'], ['w2', 'My Recipe', 'وصفتي']]} val={t} set={setT} />
         {t === 'build' && <Builder onEnter={onEnter} />}
         {t !== 'build' && <Task key={t} t={WRITING.tasks.find((x) => x.id === t)} onEnter={onEnter} />}
       </div></section>

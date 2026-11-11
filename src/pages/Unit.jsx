@@ -11,7 +11,7 @@ function FlipCard({ v }) {
   const [f, setF] = useState(false)
   return (
     <div className={`fcard ${f ? 'flip' : ''}`}>
-      <button className="fc-in" onClick={() => setF(!f)} aria-label={`${v.en}: اضغطي للقلب`}>
+      <button className="fc-in" onClick={() => setF(!f)} aria-label={`${v.en}: اضغط للقلب`}>
         <span className="fc-front"><span className="fc-e" aria-hidden="true">{v.e}</span><Ltr as="b">{v.en}</Ltr></span>
         <span className="fc-back"><b>{v.ar}</b><Ltr as="small">{v.ex}</Ltr></span>
       </button>
@@ -29,7 +29,7 @@ function MatchGame({ u, onEnter }) {
   const ref = useRef()
   const w = set[i]
   const opts = useMemo(() => w ? [w.ar, ...u.vocab.filter((x) => x.en !== w.en).sort(() => Math.random() - 0.5).slice(0, 2).map((x) => x.ar)].sort(() => Math.random() - 0.5) : [], [w])
-  if (!me()) return <div className="game-card"><p>سجّلي دخولك لتلعبي وتجمعي النجوم.</p><button className="btn primary" onClick={onEnter}>ادخلي</button></div>
+  if (!me()) return <div className="game-card"><p>سجّل دخولك لتلعب وتجمع النجوم.</p><button className="btn primary" onClick={onEnter}>ادخل</button></div>
   if (done) return <div className="game-card"><Score score={ok} max={set.length} onRetry={() => { setRound(round + 1); setI(0); setOk(0); setDone(false) }} /></div>
   return (
     <div className="game-card" ref={ref}>
@@ -46,7 +46,7 @@ function MatchGame({ u, onEnter }) {
 function Words({ u, onEnter }) {
   return (
     <div className="stack">
-      <div className="sub-h"><h2 dir="ltr">Words</h2><p>اضغطي البطاقة لترين المعنى والمثال، واضغطي السماعة لتسمعي النطق.</p></div>
+      <div className="sub-h"><h2 dir="ltr">Words</h2><p>اضغط البطاقة لترى المعنى والمثال، واضغط السماعة لتسمع النطق.</p></div>
       <div className="fgrid">{u.vocab.map((v) => <FlipCard key={v.en} v={v} />)}</div>
       <MatchGame u={u} onEnter={onEnter} />
     </div>
@@ -74,11 +74,11 @@ function GrammarCard({ g, color }) {
       {g.table && <div className="gtable" dir="ltr">{g.table.map(([a, b2]) => <div key={a}><b>{a}</b><span>{b2}</span></div>)}</div>}
       <ul className="examples">{g.examples.map((e) => <li key={e}><SpeakBtn text={e.replace(/\(.*\)/, '')} small /><Ltr>{e}</Ltr></li>)}</ul>
       <div className="try">
-        <h4><bdi dir="ltr">Try it!</bdi> <span>جرّبي</span></h4>
+        <h4><bdi dir="ltr">Try it!</bdi> <span>جرّب</span></h4>
         {g.practice.map((p, i) => (
           <div key={i} className="try-q"><Ltr as="p">{p.q}</Ltr><Choices opts={p.opts} answer={p.a} shuffle onDone={answered} /></div>
         ))}
-        {n === g.practice.length && <p className="try-res">{score === n ? 'Perfect! ممتاز 🎉' : `${score} من ${n}، راجعي القاعدة ثم أعيدي المحاولة لاحقًا`}</p>}
+        {n === g.practice.length && <p className="try-res">{score === n ? 'Perfect! ممتاز 🎉' : `${score} من ${n}، راجع القاعدة ثم أعد المحاولة لاحقًا`}</p>}
       </div>
     </article>
   )
@@ -95,8 +95,8 @@ function Sounds({ u, onEnter }) {
         <div className="pron-list">{u.pron.items.map((s) => (
           <div key={s} className="pron-row"><Ltr as="b">{s}</Ltr><SpeakBtn text={s} label="عادي" /><SpeakBtn text={s} slow label="ببطء" /></div>
         ))}</div>
-        <p className="tip">استمعي بالسرعة العادية ثم البطيئة، ولاحظي كيف تندمج do you في الكلام السريع. ثم انتقلي إلى <a href="#/skills/speaking">قسم المحادثة</a> وجرّبي بصوتك.</p>
-        {m ? <button className="btn primary" onClick={(e) => { addEvent('sound', u.id, 1, 1); burstAt(e.currentTarget) }}>تدرّبت عليها ✓</button> : <button className="btn primary" onClick={onEnter}>ادخلي لتحفظي تقدمك</button>}
+        <p className="tip">استمع بالسرعة العادية ثم البطيئة، ولاحظ كيف تندمج do you في الكلام السريع. ثم انتقل إلى <a href="#/skills/speaking">قسم المحادثة</a> وجرّب بصوتك.</p>
+        {m ? <button className="btn primary" onClick={(e) => { addEvent('sound', u.id, 1, 1); burstAt(e.currentTarget) }}>تدرّبت عليها ✓</button> : <button className="btn primary" onClick={onEnter}>ادخل لتحفظ تقدمك</button>}
       </div>
     )
   }
@@ -105,7 +105,7 @@ function Sounds({ u, onEnter }) {
   const right = Object.values(res).filter(Boolean).length
   return (
     <div className="stack" ref={ref}>
-      <div className="sub-h"><h2 dir="ltr">{u.pron.title}</h2><p>{u.pron.ar}: استمعي لكل كلمة ثم اختاري صوت نهايتها.</p></div>
+      <div className="sub-h"><h2 dir="ltr">{u.pron.title}</h2><p>{u.pron.ar}: استمع لكل كلمة ثم اختر صوت نهايتها.</p></div>
       <div className="sort-grid">
         {words.map(({ w, s }) => (
           <div key={w} className={`sort-item ${res[w] === true ? 'ok' : res[w] === false ? 'no' : ''}`}>
@@ -117,7 +117,7 @@ function Sounds({ u, onEnter }) {
         ))}
       </div>
       {done && <Score score={right} max={words.length} onRetry={() => setRes({})} />}
-      {!m && <button className="btn primary" onClick={onEnter}>ادخلي لتحفظي تقدمك</button>}
+      {!m && <button className="btn primary" onClick={onEnter}>ادخل لتحفظ تقدمك</button>}
     </div>
   )
 }
@@ -132,7 +132,7 @@ function Enrich({ u }) {
           <article key={i} className={`en-card t-${x.type}`}>
             <span className="en-tag">{x.type === 'fact' ? 'Did you know?' : x.type === 'idioms' ? 'Say it like a native' : 'Project'}</span>
             <Ltr as="h3">{x.title}</Ltr><span className="en-ar">{x.ar}</span>
-            {x.text && <><Ltr as="p">{x.text}</Ltr><SpeakBtn text={x.text} small label="استمعي" /></>}
+            {x.text && <><Ltr as="p">{x.text}</Ltr><SpeakBtn text={x.text} small label="استمع" /></>}
             {x.tAr && <button className="link-btn" onClick={() => setOpen({ ...open, [i]: !open[i] })}>{open[i] ? 'إخفاء الترجمة' : 'عرض الترجمة'}</button>}
             {open[i] && <p className="en-tr"><Mixed text={x.tAr} /></p>}
             {x.list && <ul className="idioms">{x.list.map(([a, b]) => <li key={a}><SpeakBtn text={a} small /><Ltr as="b">{a}</Ltr><span>{b}</span></li>)}</ul>}
@@ -175,7 +175,7 @@ export default function Unit({ id, tab = 'words', onEnter }) {
               <span className="big-emoji">📝</span>
               <h2 dir="ltr">Unit {u.no} Quiz</h2>
               <p>12 سؤالًا: اختيار، وصح وخطأ، وكتابة، واستماع.</p>
-              <a className="btn primary big" href={`#/quiz/q${u.no}`}>ابدئي الاختبار <Icon n="arrow" /></a>
+              <a className="btn primary big" href={`#/quiz/q${u.no}`}>ابدأ الاختبار <Icon n="arrow" /></a>
             </div>
           )}
         </div>

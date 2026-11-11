@@ -18,8 +18,8 @@ export default function Quizzes() {
               <span className="qz-e">{q.challenge ? '🚀' : q.u === 'u4' ? '🎨' : '🍦'}</span>
               <Ltr as="h2">{q.title}</Ltr><span className="qz-ar">{q.ar}</span>
               <span className="qz-meta">{q.items.length} سؤال · {q.minutes} دقائق</span>
-              <span className="qz-best">{p !== null ? <>أفضل نتيجة <b dir="ltr">{p}%</b></> : 'لم تختبري بعد'}</span>
-              <span className="qz-go">{p !== null ? 'أعيدي' : 'ابدئي'}<Icon n="arrow" /></span>
+              <span className="qz-best">{p !== null ? <>أفضل نتيجة <b dir="ltr">{p}%</b></> : 'لم تختبر بعد'}</span>
+              <span className="qz-go">{p !== null ? 'أعد' : 'ابدأ'}<Icon n="arrow" /></span>
             </a>
           )
         })}
