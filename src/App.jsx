@@ -85,6 +85,7 @@ function Footer() {
       <div className="wrap foot-in">
         <Logo small />
         <p>English 2 · Super Goal 2 · Units 4–5 · الفصل الدراسي الأول</p>
+        <p className="credit">تصميم: <b dir="ltr">Research by Eman</b></p>
         <a href="#/teacher" className="t-link"><Icon n="lock" size={16} />لوحة المعلم</a>
       </div>
     </footer>

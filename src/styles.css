@@ -647,3 +647,4 @@ bdi{unicode-bidi:isolate;font-family:var(--en)}
   *,*::before,*::after{animation:none !important;transition:none !important}
   html{scroll-behavior:auto}
 }
+.foot .credit{font-weight:600}.foot .credit b{color:#fff;font-weight:800}
